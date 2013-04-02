@@ -5,4 +5,4 @@ python:
 # command to install dependencies
 install: "python setup.py develop"
 # # command to run tests
-script: py.test pytest_bdd_splinter
+script: python setup.py test
