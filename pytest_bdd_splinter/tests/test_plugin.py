@@ -1,22 +1,23 @@
 """Tests for pytest-bdd-splinter subplugin."""
 
 
-def test_pytest_assertrepr_compare_called(self, testdir):
-        testdir.makeconftest("""
-            l = []
-            def pytest_assertrepr_compare(op, left, right):
-                l.append((op, left, right))
-            def pytest_funcarg__l(request):
-                return l
-        """)
+def test_pytest_assertrepr_compare_called(testdir):
         testdir.makepyfile("""
-            def test_hello():
-                assert 0 == 1
-            def test_check(l):
-                assert l == [("==", 0, 1)]
+            import mock
+            import splinter
+            from splinter.driver.webdriver.firefox import WebDriver
+            mocked_browser = mock.MagicMock()
+            splinter.Browser = lambda: mocked_browser
+
+            def test_browser(request, browser):
+                assert browser is mocked_browser
+                assert request._pyfuncitem.session._setupstate._finalizers
+
+                with mock.patch.object(WebDriver, 'quit') as mocked:
+                    request._pyfuncitem.session._setupstate._finalizers.values()[0][0]()
+                    assert mocked.assert_called_once()
         """)
         result = testdir.runpytest("-v")
         result.stdout.fnmatch_lines([
-            "*test_hello*FAIL*",
-            "*test_check*PASS*",
+            "*test_browser*PASS*",
         ])

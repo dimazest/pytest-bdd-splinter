@@ -13,3 +13,9 @@ Features
 
 The subplugin provides many useful fixtures to be used if you're using pytest-bdd for browser testing
 (similar to Selenium2Library for Robotframework)
+
+
+Fixtures
+========
+
+    *  browser -- get the splinter's Browser
