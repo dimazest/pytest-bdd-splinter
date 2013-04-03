@@ -1,7 +1,7 @@
 """Tests for pytest-bdd-splinter subplugin."""
 
 
-def test_pytest_assertrepr_compare_called(testdir):
+def test_pytest_browser(testdir):
         testdir.makepyfile("""
             import mock
             import splinter
