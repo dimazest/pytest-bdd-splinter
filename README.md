@@ -1,6 +1,7 @@
 Splinter subpling for BDD library for the py.test runner
 ========================================================
 
+[![Build Status](https://api.travis-ci.org/olegpidsadnyi/pytest-bdd-splinter.png)](https://api.travis-ci.org/olegpidsadnyi/pytest-bdd-splinter)
 
 Install pytest-bdd-splinter
 ===========================
