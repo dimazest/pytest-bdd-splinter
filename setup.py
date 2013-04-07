@@ -1,6 +1,5 @@
 #!/usr/bin/env python
-import os
-from setuptools import setup, Command, find_packages
+from setuptools import setup, Command
 
 
 class PyTest(Command):
@@ -18,11 +17,10 @@ class PyTest(Command):
         errno = subprocess.call([sys.executable, '-m', 'pytest'])
         raise SystemExit(errno)
 
-packages = find_packages(os.path.dirname(os.path.abspath(__file__)))
-
 setup(
     name='pytest-bdd-splinter',
     description='Splinter subplugin for Pytest BDD plugin',
+    author='Oleg Pidsadnyi, Anatoly Bubenkov',
     version='0.1',
     cmdclass={'test': PyTest},
     install_requires=[
@@ -32,5 +30,5 @@ setup(
     ],
     tests_require=['mock'],
     entry_points={'pytest11': ['pytest-bdd-splinter=pytest_bdd_splinter.plugin']},
-    packages=packages,
+    packages=['pytest_bdd_splinter'],
 )
