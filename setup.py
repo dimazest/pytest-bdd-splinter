@@ -20,8 +20,9 @@ class PyTest(Command):
 setup(
     name='pytest-bdd-splinter',
     description='Splinter subplugin for Pytest BDD plugin',
-    author='Oleg Pidsadnyi, Anatoly Bubenkov',
-    version='0.1',
+    author='Oleg Pidsadnyi',
+    author_email='oleg.podsadny@gmail.com',
+    version='0.2',
     cmdclass={'test': PyTest},
     install_requires=[
         'setuptools',
