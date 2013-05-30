@@ -5,12 +5,26 @@ import splinter
 
 
 @pytest.fixture
-def browser(request):
+def pytestbdd_close_browser():
+    """Close browser fixture."""
+    return True
+
+
+@pytest.fixture
+def pytestbdd_webdriver():
+    """Webdriver fixture."""
+    return 'phantomjs'
+
+
+@pytest.fixture
+def browser(request, pytestbdd_close_browser, pytestbdd_webdriver):
     """Create splinter's browser for generic use."""
-    browser = splinter.Browser()
+    browser = splinter.Browser(pytestbdd_webdriver)
 
     def fin():
         browser.quit()
-    request.addfinalizer(fin)
+
+    if pytestbdd_close_browser:
+        request.addfinalizer(fin)
 
     return browser

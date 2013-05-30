@@ -22,7 +22,7 @@ setup(
     description='Splinter subplugin for Pytest BDD plugin',
     author='Oleg Pidsadnyi',
     author_email='oleg.podsadny@gmail.com',
-    version='0.2',
+    version='0.2.1',
     cmdclass={'test': PyTest},
     install_requires=[
         'setuptools',
