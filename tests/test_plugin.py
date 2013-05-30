@@ -5,7 +5,7 @@ import splinter
 from splinter.driver.webdriver.firefox import WebDriver
 
 mocked_browser = mock.MagicMock()
-splinter.Browser = lambda: mocked_browser
+splinter.Browser = lambda *args, **kwargs: mocked_browser
 
 
 def test_browser(request, browser):

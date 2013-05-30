@@ -29,7 +29,7 @@ setup(
     install_requires=[
         'setuptools',
         'pytest-bdd',
-        'splinter'
+        'splinter',
     ],
     tests_require=['mock'],
     entry_points={'pytest11': ['pytest-bdd-splinter=pytest_bdd_splinter.plugin']},
