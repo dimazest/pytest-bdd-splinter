@@ -13,7 +13,7 @@ def pytestbdd_close_browser():
 @pytest.fixture
 def pytestbdd_webdriver():
     """Webdriver fixture."""
-    return 'phantomjs'
+    return 'firefox'
 
 
 @pytest.fixture

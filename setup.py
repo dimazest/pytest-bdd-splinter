@@ -1,28 +1,30 @@
 #!/usr/bin/env python
-from setuptools import setup, Command
+import sys
+
+from setuptools import setup
+from setuptools.command.test import test as TestCommand
 
 
-class PyTest(Command):
-    user_options = []
-
-    def initialize_options(self):
-        pass
+class PyTest(TestCommand):
 
     def finalize_options(self):
-        pass
+        TestCommand.finalize_options(self)
+        self.test_args = []
+        self.test_suite = True
 
-    def run(self):
-        import sys
-        import subprocess
-        errno = subprocess.call([sys.executable, '-m', 'pytest'])
-        raise SystemExit(errno)
+    def run_tests(self):
+        #import here, cause outside the eggs aren't loaded
+        import pytest
+        errno = pytest.main(self.test_args)
+        sys.exit(errno)
+
 
 setup(
     name='pytest-bdd-splinter',
     description='Splinter subplugin for Pytest BDD plugin',
     author='Oleg Pidsadnyi',
     author_email='oleg.podsadny@gmail.com',
-    version='0.2.1',
+    version='0.3.1',
     cmdclass={'test': PyTest},
     install_requires=[
         'setuptools',
