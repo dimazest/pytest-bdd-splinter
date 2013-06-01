@@ -20,7 +20,20 @@ Fixtures
 ========
 
     *  browser -- get the splinter's Browser
+    *  pytestbdd_webdriver -- splinter's webdriver name to use. Fixture gets the value from the command-line option
+       bdd-splinter-driver-name (see below)
 
+Command-line options
+====================
+
+    *  --bdd-splinter-driver-name (default: firefox) - the webdriver name to use. Options:
+
+        *  firefox
+        *  remote
+        *  chrome
+        *  phantomjs
+
+        For more details, refer to splinter and selenium documentation.
 
 Example
 =======
