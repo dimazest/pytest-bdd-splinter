@@ -11,9 +11,9 @@ def pytestbdd_close_browser():
 
 
 @pytest.fixture
-def pytestbdd_webdriver():
+def pytestbdd_webdriver(request):
     """Webdriver fixture."""
-    return 'firefox'
+    return request.config.option.bdd_splinter_driver_name
 
 
 @pytest.fixture
@@ -28,3 +28,10 @@ def browser(request, pytestbdd_close_browser, pytestbdd_webdriver):
         request.addfinalizer(fin)
 
     return browser
+
+
+def pytest_addoption(parser):
+    parser.addoption(
+        "--bdd-splinter-driver-name",
+        help="pytest-bdd-splinter driver name", type="choice", choices=splinter.browser._DRIVERS.keys(),
+        dest='bdd_splinter_driver_name', default='firefox')
