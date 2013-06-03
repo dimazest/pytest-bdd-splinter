@@ -20,6 +20,19 @@ Fixtures
 ========
 
     *  browser -- get the splinter's Browser
+    *  pytestbdd_selenium_implicit_wait -- implicit wait timeout to be passed to Selenium webdriver
+    *  pytestbdd_selenium_socket_timeout -- socket timeout for communication between the webdriver and the browser
+
+
+Command-line options
+====================
+
+    *  --bdd-implicit-wait, seconds (default: 1) - the selenium webdriver implicit wait
+
+        For more details, refer to splinter and selenium documentation.
+
+    *  --bdd-socket-timeout, seconds (default: 600) - the selenium webdriver socket timeout for for communication
+        between the webdriver and the browser
 
 
 Example
