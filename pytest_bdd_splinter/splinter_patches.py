@@ -6,11 +6,7 @@ from splinter.driver.webdriver.firefox import WebDriverElement
 def patch_webdriverelement():
     """Patches the WebDriverElement to allow firefox to use mouse_over"""
     def mouse_over(self):
-        """
-        Performs a mouse over the element.
-
-        Currently works only on Chrome driver.
-        """
+        """Performs a mouse over the element."""
         ActionChains(self.parent.driver).move_to_element(self._element).perform()
 
 
