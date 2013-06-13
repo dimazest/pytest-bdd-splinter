@@ -1,0 +1,4 @@
+0.3.2
+
+- Created splinter_patches.py, patches splinter to support mouse_over in Firefox
+- Added call to the monkeypatch in plugin.py
