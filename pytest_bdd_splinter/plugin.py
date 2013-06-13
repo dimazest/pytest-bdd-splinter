@@ -4,6 +4,7 @@ import pytest
 import splinter
 
 from .webdriver_patches import patch_webdriver
+from .splinter_patches import patch_webdriverelement
 
 
 @pytest.fixture
@@ -40,6 +41,7 @@ def browser(
         pytestbdd_close_browser, pytestbdd_webdriver):
     """Splinter browser wrapper instance. To be used for browser interaction."""
     patch_webdriver(pytestbdd_selenium_socket_timeout)
+    patch_webdriverelement()
     browser = splinter.Browser(pytestbdd_webdriver)
     browser.driver.implicitly_wait(pytestbdd_selenium_implicit_wait)
 
