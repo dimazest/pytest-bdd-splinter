@@ -61,3 +61,10 @@ test_your_test.py:
         button.click()
         assert browser.is_text_present('splinter.cobrateam.info'), 'splinter.cobrateam.info wasn't found... We need to'
         ' improve our SEO techniques'
+
+License
+=======
+
+This software is licensed under the [MIT license](http://en.wikipedia.org/wiki/MIT_License>).
+
+© 2013 Oleg Pidsadnyi
