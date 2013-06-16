@@ -1,3 +1,8 @@
+0.4.1
+
+- Updated the setup information for the PyPi
+
+
 0.3.2
 
 - Created splinter_patches.py, patches splinter to support mouse_over in Firefox
