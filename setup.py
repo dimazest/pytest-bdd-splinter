@@ -17,7 +17,7 @@ browser -- get the splinter's Browser
 - pytestbdd_selenium_socket_timeout -- socket timeout for communication between the webdriver and the browser.
     Fixture gets the value from the command-line option bdd-socket-timeout (see below)
 
-= pytestbdd_webdriver -- splinter's webdriver name to use. Fixture gets the value from the command-line option
+- pytestbdd_webdriver -- splinter's webdriver name to use. Fixture gets the value from the command-line option
     bdd-webdriver (see below)
 
 
