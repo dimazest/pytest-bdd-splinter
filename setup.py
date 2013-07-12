@@ -84,7 +84,7 @@ setup(
     author='Oleg Pidsadnyi',
     license='MIT license',
     author_email='oleg.podsadny@gmail.com',
-    version='0.4.2-dev',
+    version='0.4.2.1-dev',
     cmdclass={'test': PyTest},
     url='https://github.com/olegpidsadnyi/pytest-bdd-splinter',
     install_requires=[

@@ -13,9 +13,11 @@ def wait_until(browser, condition, timeout=10):
 
     while not condition(browser):
         if time.time() > max_time:
-            raise Exception('Timeout')
+            raise WaitUntilTimeout()
 
         time.sleep(0.1)
+
+    return True
 
 
 class WaitUntilTimeout(Exception):
