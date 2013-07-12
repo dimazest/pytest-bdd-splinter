@@ -1,8 +1,8 @@
 """Splinter subplugin for pytest-bdd."""
-
 import pytest
 import splinter
 
+from .browser_patches import wait_until
 from .webdriver_patches import patch_webdriver
 from .splinter_patches import patch_webdriverelement
 
@@ -36,9 +36,39 @@ def pytestbdd_selenium_implicit_wait(request):
 
 
 @pytest.fixture
+def pytestbdd_browser_load_condition():
+    """The condition that has to be `True` to assume that the page is fully loaded.
+
+        One example is to wait for jQuery, then the condition could be::
+
+            @pytest.fixture
+            def pytestbdd_browser_load_condition():
+
+                def condition(browser):
+                    return browser.evaluate_script('typeof $ === "undefined" || !$.active')
+
+                return condition
+
+    """
+    return lambda browser: True
+
+
+@pytest.fixture
+def pytestbdd_browser_load_timeout():
+    """The timeout in seconds in which the page is expected to be fully loaded."""
+    return 10
+
+
+@pytest.fixture
 def browser(
-        request, pytestbdd_selenium_socket_timeout, pytestbdd_selenium_implicit_wait,
-        pytestbdd_close_browser, pytestbdd_webdriver):
+    request,
+    pytestbdd_selenium_socket_timeout,
+    pytestbdd_selenium_implicit_wait,
+    pytestbdd_close_browser,
+    pytestbdd_webdriver,
+    pytestbdd_browser_load_condition,
+    pytestbdd_browser_load_timeout,
+):
     """Splinter browser wrapper instance. To be used for browser interaction."""
     patch_webdriver(pytestbdd_selenium_socket_timeout)
     patch_webdriverelement()
@@ -50,6 +80,19 @@ def browser(
 
     if pytestbdd_close_browser:
         request.addfinalizer(fin)
+
+    old_visit = browser.visit
+
+    def new_visit(url):
+        old_visit(url)
+        wait_until(
+            browser,
+            condition=pytestbdd_browser_load_condition,
+            timeout=pytestbdd_browser_load_timeout,
+        )
+
+    browser.visit = new_visit
+
     return browser
 
 
