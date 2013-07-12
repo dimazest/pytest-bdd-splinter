@@ -30,8 +30,6 @@ def test_wait_until_timout(
 
     monkeypatch.setattr(time, 'time', fake_time)
 
-    assert wait_until(browser, lambda browser: False, 10)
-
     with pytest.raises(WaitUntilTimeout):
         wait_until(browser, lambda browser: False, 10)
 
